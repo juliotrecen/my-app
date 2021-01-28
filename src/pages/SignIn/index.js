@@ -1,9 +1,162 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import {makeStyles} from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
+import {useNavigate} from 'react-router-dom';
+import FormHelperText from '@material-ui/core/FormHelperText';
+
+import authService from '../../services/authService';
+
+const useStyles = makeStyles((theme) =>({
+    root:{
+        display: 'flex',
+        height: '100vh',
+
+    },
+    image:{
+        backgroundImage: 'url(/images/background.jpeg)',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'none',
+        padding: theme.spacing(2),
+        textAlign: 'center',
+    },
+    avatar:{
+        marginBottom: theme.spacing(1),
+        background: theme.palette.primary.main,
+    },
+    
+    button:{
+        marginTop: theme.spacing(1)
+    },
+    
+    form:{
+        margin: theme.spacing(2,4)
+    }
+
+}));
+
+function Copyright(){
+    return (
+        <Typography variant = 'body2' align= 'center'>
+            {'Copyright ©'}
+            <a color = 'inherit' href = 'https://www.linkedin.com/in/julio-trevisan-centanin-21997314a/' >
+                Júlio Trevisan Centanin
+            </a>{' '}
+            {new Date().getFullYear()}
+        </Typography>
+    )
+}
+
 
 
 function SignIn() {
+    const classes = useStyles();
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState();
+
+
+    async function handleSignIn() {
+        //chamada a api
+        // se retorno ok, direciona para home
+        // se não exibe mensagem para o usuario
+
+        try {
+            await  authService.signIn(email,password);
+            navigate('/');
+        }
+        catch (error){
+            setErrorMessage(error.response.data.message)
+        }
+    }
+    
     return(
-        <h1>Login Component</h1>
+        <Grid className = {classes.root}>
+            <Grid 
+            item 
+            container
+            direction = 'column'
+            justify = 'center'
+            alignItems = 'center'
+            md = {7}
+            className= {classes.image}>
+                <Typography style={{color: '#fff', fontSize:35, lineHeight: '45px'}}>
+                     <strong>Simplificando a forma de conectar pessoas !</strong>
+                 </Typography>
+                 <Typography variant= 'body2' style={{color: 'rgb(255,255,255, 0.7)',marginTop: 30,fontSize:15, lineHeight: '30px'}}>
+                    Compartilhe momentos com toda nossa rede.
+                 </Typography>
+            </Grid>
+            <Grid item md = {5}>
+                <Box display = 'flex' flexDirection = 'column' alignItems = 'center' mt = {8}>
+                    <Avatar className = {classes.avatar} >
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography variant = 'h5'>Acesso</Typography>
+                    <form className = {classes.form}>
+                        <TextField
+                        variant = 'outlined'
+                        margin = 'normal'
+                        required
+                        fullWidth
+                        id = 'email'
+                        label = 'E-mail'
+                        name = 'email'
+                        autoComplete = 'email'
+                        autoFocus
+                        value = {email}
+                        onChange = {(event) => setEmail(event.target.value)}
+                        />
+                        <TextField
+                        variant = "outlined"
+                        margin = "normal"
+                        required
+                        fullWidth
+                        name = "password"
+                        label = "Senha"
+                        type = "password"
+                        id = "password"
+                        autoComplete = "current-password"
+                        value = {password}
+                        onChange = {(event) => setPassword(event.target.value)}
+                        />
+                        <Button
+                        fullWidth
+                        variant = 'contained'
+                        color = 'primary'
+                        className = {classes.button}
+                        onClick = {handleSignIn}>
+                        Entrar
+                        </Button>
+                        {
+                            errorMessage &&
+                            <FormHelperText error>
+                                {errorMessage}
+                            </FormHelperText>
+
+                        }
+                        <Grid container>
+                            <Grid item>
+                                <Link>Esqueceu sua senha?</Link>
+                            </Grid>
+                            <Grid item>
+                                <Link>Não tem uma conta ? Registre-se</Link>
+                            </Grid>
+                        </Grid>
+                    </form>
+                    <Copyright />
+                </Box>
+            </Grid>
+        </Grid>
     )
     
 }
