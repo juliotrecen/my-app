@@ -11,8 +11,10 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import {useNavigate} from 'react-router-dom';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import { useDispatch } from 'react-redux';
 
-import authService from '../../services/authService';
+
+import {signIn} from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) =>({
     root:{
@@ -39,6 +41,10 @@ const useStyles = makeStyles((theme) =>({
     
     form:{
         margin: theme.spacing(2,4)
+    },
+    box: {
+        backgroundColor: 'rgb(48,48,48)',
+
     }
 
 }));
@@ -63,6 +69,8 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState();
+    const dispatch = useDispatch();
+
 
 
     async function handleSignIn() {
@@ -70,11 +78,10 @@ function SignIn() {
         // se retorno ok, direciona para home
         // se não exibe mensagem para o usuario
 
-        try {
-            await  authService.signIn(email,password);
-            navigate('/');
-        }
-        catch (error){
+        try { 
+            await dispatch(signIn(email, password));
+            navigate("/");
+        } catch (error){
             setErrorMessage(error.response.data.message)
         }
     }
@@ -85,16 +92,20 @@ function SignIn() {
             item 
             container
             direction = 'column'
-            justify = 'center'
+            justify = 'space-around'
             alignItems = 'center'
             md = {7}
             className= {classes.image}>
-                <Typography style={{color: '#fff', fontSize:35, lineHeight: '45px'}}>
-                     <strong>Simplificando a forma de conectar pessoas !</strong>
-                 </Typography>
-                 <Typography variant= 'body2' style={{color: 'rgb(255,255,255, 0.7)',marginTop: 30,fontSize:15, lineHeight: '30px'}}>
-                    Compartilhe momentos com toda nossa rede.
-                 </Typography>
+                <Box >
+                    <Typography  style={{color: 'rgb(255,255,255)', fontSize:35, lineHeight: '45px'}}>
+                        <strong> Simplificando a forma de conectar pessoas ! </strong>
+                    </Typography>
+                 </Box>
+                 <Box >
+                    <Typography display="inline" variant= 'body2' style={{color: 'rgb(255,255,255, 0.9)',marginTop: 30,fontSize:15, lineHeight: '30px'}}>
+                    <strong>Compartilhe momentos com toda nossa rede. </strong>
+                    </Typography>
+                 </Box>
             </Grid>
             <Grid item md = {5}>
                 <Box display = 'flex' flexDirection = 'column' alignItems = 'center' mt = {8}>
