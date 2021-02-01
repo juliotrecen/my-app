@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Menu from '@material-ui/core/Menu';
 import MebuItem from '@material-ui/core/MenuItem';
 
-import {signOut} from '../../../../actions/accountActions';
+import {signOut} from '../../../actions/accountActions';
 
 function Account() {
     
