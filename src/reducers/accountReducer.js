@@ -1,5 +1,7 @@
 import {
-  LOGIN_SUCCESS, SILENT_LOGIN
+  LOGIN_SUCCESS, 
+  SILENT_LOGIN,
+  SIGNOUT
 } from '../actions/accountActions'
 
 
@@ -21,6 +23,12 @@ const INITIAL_STATE = {
         return {
           ...state,
           user: action.payload.user
+        }
+      }
+      case SIGNOUT:{
+        return {
+          ...state,
+          user: null
         }
       }
       default: {
