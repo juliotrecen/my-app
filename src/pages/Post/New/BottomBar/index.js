@@ -33,8 +33,8 @@ function BottomBar() {
   return (
     <AppBar position="fixed" color="inherit" className={classes.appBar}>
       <Toolbar>
-        <Button variant="outlined" className={classes.button}>Salvar rascunho</Button>
-        <Button color="secondary" variant="outlined">
+        <Button className={classes.button} >Salvar rascunho</Button>
+        <Button variant="outlined" color="secondary">
           Publicar
         </Button>
       </Toolbar>

@@ -11,54 +11,52 @@ const useStyles = makeStyles(() => ({
 }));
 
 const posts = [
-    {   
-        id: 1,
-        author: {
-            id: 1,
-            username: 'juliocentanin',
-            name: "Júlio Centanin",
-            avatar: '/images/avatar/avatar_1.jpeg'
-        },
-        title: "Criando um App do zero usando React.Js",
-        date: "January 28 2021",
-        description: "Fala pessoal, tudo bom ?",
-        hashtags: "#donate, #javascript, #reactjs, #develop",
-        image: "/images/posts/post1.png"
+  {
+    id: 1,
+    author: {
+      id: 1,
+      name: 'Julio Centanin',
+      username: 'juliocentanin',
+      avatar: '/images/avatars/avatar_1.jpeg',
     },
-
-        {   
-            id: 2,
-            author: {
-                id: 1,
-                username: 'danielcentanin',
-                name: "Daniel Centanin",
-                avatar: '/images/avatar/avatar_1.jpeg'
-            },
-            title: "Comparatips React.js",
-            date: "January 27 2021",
-            description: "Fala pessoal, como vai?",
-            hashtags: "#framework, #javascript, #reactjs, #vue",
-            image: "/images/posts/post2.png"
-    
-                
-            },
+    title: 'Criando um App do zero utilizando React.js',
+    date: 'April 7, 2020',
+    description: 'Fala pessoal! Qual o framework favorito de vcs?',
+    hashtags: '#dotnet, #javascript, #reactjs, #developer',
+    image: '/images/posts/post1.png',
+  },
+  {
+    id: 2,
+    author: {
+      id: 1,
+      name: 'Julio Centanin',
+      username: 'juliocentanin',
+      avatar: '/images/avatars/avatar_1.jpeg',
+    },
+    title: 'Comparativo entre React.js e Vue.js - Performance',
+    date: 'April 1, 2020',
+    description:
+      'Quero criar um bootcamp gratuito para passar um pouco da minha experiência pra vcs! Quem topa?',
+    hashtags: '#framework, #javascript, #reactjs, #vue',
+    image: '/images/posts/post2.png',
+  },
 ];
 
 function Feed() {
-    const classes = useStyles();
-  
-    return (
-      <Container maxWidth="lg">
-        <Box display="flex">
-          <NavBar />
-          <div className={classes.root}>
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        </Box>
-      </Container>
-    );
-  }
-  
-  export default Feed;
+  const classes = useStyles();
+
+  return (
+    <Container maxWidth="lg">
+      <Box display="flex">
+        <NavBar />
+        <div className={classes.root}>
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
+      </Box>
+    </Container>
+  );
+}
+
+export default Feed;

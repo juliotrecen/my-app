@@ -61,8 +61,6 @@ function PostEditor() {
   return (
     <>
       
-
-      
       <Box mb={2}>
         <Title />
       </Box>
@@ -90,16 +88,15 @@ function PostEditor() {
       <Box align='center'>
         <Box {...getRootProps()} mb={1}>
           <input {...getInputProps()} />
-          <Button variant="outlined" >Carregar imagem</Button>
+          <Button variant="outlined">Carregar imagem</Button>
         </Box>
-        
+
         {image && (
           <Box mb={2}>
             <img className={classes.image} src={image} alt="background" />
           </Box>
-      )}
+        )}
       </Box>
-    
     </>
   );
 }
