@@ -33,7 +33,7 @@ function Home() {
             <Route path ='/' element = {<Feed />}/>
               <Route path ='/feed' element = {<Feed />}/>
               <Route path ='/post/new' element = {<NewPost />}/>
-              <Route path = "*" element = {<h1>Not Found, Error 404!</h1>}/>
+              <Route path = "*" element = {<Feed />}/>
             </Routes>
             </main>
         </div>
