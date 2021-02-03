@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     },
 
     main: {
-        height: '100vh',
+        height: 'calc(100vh - 64px)',
         padding: 24 ,
     },
 
