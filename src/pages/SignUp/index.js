@@ -13,12 +13,12 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { signIn } from '../../actions/accountActions';
+import { signUp } from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
-    backgroundColor: theme.palette.background.dark,
+    backgroundColor: theme.palette.background.dark, 
   },
 
   image: {
@@ -47,16 +47,16 @@ function Copyright() {
       {'Copyright © '}
       <a
         color="inherit"
-        href="https://www.youtube.com/channel/UCVE9-HO_GzLtDK4IGKVSYXA"
+        href="https://www.linkedin.com/in/julio-trevisan-centanin-21997314a/"
       >
-        Lucas Nhimi
+        Julio Centanin
       </a>{' '}
       {new Date().getFullYear()}
     </Typography>
   );
 }
 
-function SignIn() {
+function SignUp() {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -94,13 +94,17 @@ function SignIn() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant="h5">Acesso</Typography>
+          <Typography variant="h5">Registrar</Typography>
           <Formik
             initialValues={{
+              fullName: '',
               email: '',
               password: '',
             }}
             validationSchema={Yup.object().shape({
+              fullName: Yup.string()
+                .max(255)
+                .required('Favor informar o nome completo'),
               email: Yup.string()
                 .email('Favor informar um email válido')
                 .max(255)
@@ -114,7 +118,9 @@ function SignIn() {
               { setErrors, setStatus, setSubmitting },
             ) => {
               try {
-                await dispatch(signIn(values.email, values.password));
+                await dispatch(
+                  signUp(values.fullName, values.email, values.password),
+                );
                 navigate('/');
               } catch (error) {
                 const message =
@@ -129,6 +135,21 @@ function SignIn() {
           >
             {({ errors, handleChange, handleSubmit, isSubmitting, values }) => (
               <form noValidate className={classes.form} onSubmit={handleSubmit}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="fullName"
+                  label="Nome completo"
+                  name="fullName"
+                  autoComplete="fullName"
+                  autoFocus
+                  error={Boolean(errors.fullName)}
+                  value={values.fullName}
+                  onChange={handleChange}
+                  helperText={errors.fullName}
+                />
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -167,17 +188,14 @@ function SignIn() {
                   type="submit"
                   disbled={isSubmitting}
                 >
-                  Entrar
+                  Registrar
                 </Button>
                 {errors.submit && (
                   <FormHelperText error>{errors.submit}</FormHelperText>
                 )}
                 <Grid container>
                   <Grid item>
-                    <Link>Esqueceu sua senha?</Link>
-                  </Grid>
-                  <Grid item>
-                    <Link>Não tem uma conta? Registre-se</Link>
+                    <Link>Ja possui uma conta? Clique aqui</Link>
                   </Grid>
                 </Grid>
               </form>
@@ -190,4 +208,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;

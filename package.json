@@ -1,5 +1,5 @@
 {
-  "name": "conecta-dev",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +13,8 @@
     "airbnb": "^0.0.2",
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.18.1",
+    "formik": "^2.2.6",
+    "lodash": "^4.17.20",
     "moment": "^2.26.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -24,7 +26,8 @@
     "react-router-dom": "^6.0.0-alpha.4",
     "react-scripts": "^3.4.4",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "start": "react-scripts start",
