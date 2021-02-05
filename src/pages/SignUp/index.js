@@ -195,7 +195,7 @@ function SignUp() {
                 )}
                 <Grid container>
                   <Grid item>
-                    <Link>Ja possui uma conta? Clique aqui</Link>
+                    <Link onClick={()=> {navigate('/sign-in');}}>Ja possui uma conta? Clique aqui</Link>
                   </Grid>
                 </Grid>
               </form>

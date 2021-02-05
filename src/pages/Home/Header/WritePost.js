@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 
 function WritePost() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function WritePost() {
   };
 
   return (
-    <Button variant="contained" color="primary" onClick={handleClick}>
+    <Button size="small" disableElevation variant="contained" color="primary" onClick={handleClick} startIcon={<PostAddIcon />}>
       Novo Post
     </Button>
   );

@@ -47,9 +47,9 @@ function Copyright() {
       {'Copyright © '}
       <a
         color="inherit"
-        href="https://www.youtube.com/channel/UCVE9-HO_GzLtDK4IGKVSYXA"
+        href="https://www.linkedin.com/in/julio-trevisan-centanin-21997314a/"
       >
-        Lucas Nhimi
+        Julio Centanin
       </a>{' '}
       {new Date().getFullYear()}
     </Typography>
@@ -177,7 +177,7 @@ function SignIn() {
                     <Link>Esqueceu sua senha?</Link>
                   </Grid>
                   <Grid item>
-                    <Link>Não tem uma conta? Registre-se</Link>
+                    <Link onClick={()=> {navigate('/sign-up');}}>Não tem uma conta? Registre-se</Link>
                   </Grid>
                 </Grid>
               </form>

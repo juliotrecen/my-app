@@ -15,6 +15,18 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     marginRight: theme.spacing(1),
   },
+  markdown: {
+    color: theme.palette.text.primary,
+    
+  },
+  title: {
+    color: theme.palette.text.primary,
+    
+  },
+  tags: {
+    color: theme.palette.text.primary,
+    
+  },
 }));
 
 function PostPreview() {
@@ -27,26 +39,26 @@ function PostPreview() {
     <>
       
       <Box mb={2}>
-        <Typography variant="h2">{title}</Typography>
+        <Typography variant="h2" className={classes.title}>{title}</Typography>
       </Box>
       <Box display="flex" alignItems="center" mb={2}>
         <Box>
           <Avatar className={classes.avatar} src={account.user?.avatar} />
         </Box>
         <Box>
-          <Typography variant="body1">{account.user?.name}</Typography>
+          <Typography variant="body1" color ="textPrimary">{account.user?.name}</Typography>
           <Typography variant="body2" color="textSecondary">
             10 meses atrás
           </Typography>
         </Box>
       </Box>
       <Box mb={2}>
-        <Typography variant="body1">
+        <Typography variant="body1" className={classes.tags}>
           {tags?.map((item) => item.title).join(',')}
         </Typography>
       </Box>
       <Divider />
-      <Markdown source={markdownText} />
+      <Markdown source={markdownText} className={classes.markdown}/>
       {image && (
         <Box mb={2}>
           <img className={classes.imagePreview} src={image} alt="background" />

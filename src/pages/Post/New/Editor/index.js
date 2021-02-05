@@ -5,6 +5,8 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useDropzone } from 'react-dropzone';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+
 
 import { usePost } from '../../../../context/PostContext';
 import Title from './Title';
@@ -23,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginRight: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
 }));
 
@@ -88,7 +91,10 @@ function PostEditor() {
       <Box align='center'>
         <Box {...getRootProps()} mb={1}>
           <input {...getInputProps()} />
-          <Button variant="outlined">Carregar imagem</Button>
+          <Button variant="outlined"
+           className={classes.button}
+           startIcon={<CloudUploadIcon />}
+           >Carregar imagem</Button>
         </Box>
 
         {image && (
